@@ -62,15 +62,19 @@ namespace Entidades_2018
                 switch (tipo)
                 {
                     case ETipo.Snacks:
+                        if(v is Snacks)
                         sb.AppendLine(v.Mostrar());
                         break;
                     case ETipo.Dulce:
+                        if(v is Dulce)
                         sb.AppendLine(v.Mostrar());
                         break;
                     case ETipo.Leche:
+                        if(v is Leche)
                         sb.AppendLine(v.Mostrar());
                         break;
                     default:
+                        sb.AppendLine(v.Mostrar());
                         break;
 
                 }
@@ -90,8 +94,7 @@ namespace Entidades_2018
         public static Changuito operator +(Changuito c, Producto p)
         {
             bool esta = false;
-
-           
+          
             foreach (Producto v in c.productos)
             {
                 if (v == p)
@@ -100,9 +103,9 @@ namespace Entidades_2018
                     break;
                 }
             }
-
-            if (esta == false)
-                c.productos.Add(p);
+            if(c.productos.Count < c.espacioDisponible)
+                if (esta == false)
+                    c.productos.Add(p);
             
             
             return c;
@@ -116,18 +119,15 @@ namespace Entidades_2018
         /// <returns></returns>
         public static Changuito operator -(Changuito c, Producto p)
         {
-            bool esta = true;
 
-            foreach (Producto v in c.productos)
+            for (int i = 0; i < c.productos.Count; i++)
             {
-                if (v != p)
+                if (c.productos[i] == p)
                 {
-                    esta = false;
-                    break;
+                    c.productos.Remove(p);
                 }
             }
-            if (esta == true)
-                c.productos.Remove(p);
+
             return c;
         }
         #endregion

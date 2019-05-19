@@ -23,13 +23,13 @@ namespace Entidades_2018
             }
         }
 
-        public new string Mostrar()
+        public override string Mostrar()
         {
             StringBuilder sb = new StringBuilder();
 
             sb.AppendLine("DULCE");
             sb.AppendLine(base.Mostrar());
-            sb.AppendLine("CALORIAS : {0}" + this.CantidadCalorias);
+            sb.AppendFormat("CALORIAS : {0}", this.CantidadCalorias);
             sb.AppendLine("");
             sb.AppendLine("---------------------");
 
