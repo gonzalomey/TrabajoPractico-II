@@ -1,9 +1,9 @@
-﻿using Entidades_2018;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Entidades_2018;
 
 namespace TP_02_2018
 {
@@ -16,6 +16,7 @@ namespace TP_02_2018
             Console.SetWindowSize(Console.LargestWindowWidth / 2, Console.LargestWindowHeight - 2);
 
             // Nombre del alumno
+            Console.WriteLine("Gonzalo Mey\n\n");
 
             Changuito changoDeCompras = new Changuito(6);
 
@@ -39,21 +40,21 @@ namespace TP_02_2018
             changoDeCompras += a3;
             changoDeCompras += a4;
 
-            Console.WriteLine(changoDeCompras.Mostrar(changoDeCompras,Changuito.ETipo.Todos));
+            Console.WriteLine(changoDeCompras.ToString());
             Console.WriteLine("<-----------PRESIONE UNA TECLA PARA CONTINUAR----------->");
             Console.ReadKey();
             Console.Clear();
- 
 
             // Quito un item y muestro
             changoDeCompras -= c1;
 
-            Console.WriteLine(changoDeCompras.Mostrar(changoDeCompras, Changuito.ETipo.Todos));
+            Console.WriteLine(changoDeCompras.Mostrar(changoDeCompras,Changuito.ETipo.Todos));
             Console.WriteLine("<-----------PRESIONE UNA TECLA PARA CONTINUAR----------->");
             Console.ReadKey();
             Console.Clear();
+
             // Muestro solo Dulces
-            Console.WriteLine(changoDeCompras.Mostrar(changoDeCompras,Changuito.ETipo.Dulce));
+            Console.WriteLine(changoDeCompras.Mostrar(changoDeCompras, Changuito.ETipo.Dulce));
             Console.WriteLine("<-----------PRESIONE UNA TECLA PARA CONTINUAR----------->");
             Console.ReadKey();
             Console.Clear();
@@ -68,8 +69,6 @@ namespace TP_02_2018
             Console.WriteLine(changoDeCompras.Mostrar(changoDeCompras, Changuito.ETipo.Snacks));
             Console.WriteLine("<-------------PRESIONE UNA TECLA PARA SALIR------------->");
             Console.ReadKey();
-            Console.Clear();
-
         }
     }
 }

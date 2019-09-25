@@ -21,16 +21,9 @@ namespace Entidades_2018
         private ConsoleColor colorPrimarioEmpaque;
 
         /// <summary>
-        /// ReadOnly: Retornará la cantidad de ruedas del vehículo
+        /// ReadOnly: Retornará la cantidad de calorias del producto
         /// </summary>
-        protected abstract short CantidadCalorias { get; }
-        
-        public Producto(string patente,EMarca marca, ConsoleColor color)
-        {
-            this.codigoDeBarras = patente;
-            this.marca = marca;
-            this.colorPrimarioEmpaque = color;
-        }
+        public abstract short CantidadCalorias { get; }
 
         /// <summary>
         /// Publica todos los datos del Producto.
@@ -39,16 +32,18 @@ namespace Entidades_2018
         public virtual string Mostrar()
         {
             return (string)this;
-
         }
+               
 
         public static explicit operator string(Producto p)
         {
             StringBuilder sb = new StringBuilder();
 
-            sb.AppendLine("CODIGO DE BARRAS: " + p.codigoDeBarras);
-            sb.AppendLine("MARCA          : " + p.marca.ToString());
-            sb.AppendLine("COLOR EMPAQUE  : " + p.colorPrimarioEmpaque.ToString());
+            sb.AppendFormat("CODIGO DE BARRAS: {0}\r\n", p.codigoDeBarras.ToString());
+            sb.AppendFormat("MARCA          : {0}\r\n", p.marca.ToString());
+            sb.AppendFormat("COLOR EMPAQUE  : {0}\r\n", p.colorPrimarioEmpaque.ToString());
+            sb.AppendLine("---------------------");
+
             return sb.ToString();
         }
 
@@ -62,9 +57,11 @@ namespace Entidades_2018
         {
             bool retorno = false;
 
-            if (v1.codigoDeBarras.Equals(v2.codigoDeBarras))
+            if(v1.codigoDeBarras == v2.codigoDeBarras)
+            {
                 retorno = true;
-
+            }
+        
             return retorno;
         }
         /// <summary>
@@ -75,7 +72,16 @@ namespace Entidades_2018
         /// <returns></returns>
         public static bool operator !=(Producto v1, Producto v2)
         {
-            return !(v1==v2);
+            return v1!=v2;
         }
+
+        public Producto(string codigo,EMarca marca,ConsoleColor color)
+        {
+            this.codigoDeBarras = codigo;
+            this.marca = marca;
+            this.colorPrimarioEmpaque = color;
+
+        }
+
     }
 }

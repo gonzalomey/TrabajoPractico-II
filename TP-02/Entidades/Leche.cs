@@ -11,8 +11,7 @@ namespace Entidades_2018
     public class Leche : Producto
     {
         public enum ETipo { Entera, Descremada }
-
-        private ETipo tipo;
+        ETipo tipo;
 
         /// <summary>
         /// Por defecto, TIPO será ENTERA
@@ -20,20 +19,21 @@ namespace Entidades_2018
         /// <param name="marca"></param>
         /// <param name="patente"></param>
         /// <param name="color"></param>
-        public Leche(EMarca marca, string patente, ConsoleColor color) : base(patente, marca, color)
-        {
-            this.tipo = ETipo.Entera;
-        }
 
         public Leche(EMarca marca, string patente, ConsoleColor color, ETipo tipo) : base(patente, marca, color)
         {
             this.tipo = tipo;
         }
 
+        public Leche(EMarca marca, string patente, ConsoleColor color)  : base(patente, marca, color)
+        {
+            tipo = ETipo.Entera;
+        }
+
         /// <summary>
         /// Las leches tienen 20 calorías
         /// </summary>
-        protected override short CantidadCalorias
+        public override short CantidadCalorias
         {
             get
             {
@@ -47,8 +47,7 @@ namespace Entidades_2018
 
             sb.AppendLine("LECHE");
             sb.AppendLine(base.Mostrar());
-            sb.AppendFormat("CALORIAS : {0} " , this.CantidadCalorias);
-            sb.AppendLine("");
+            sb.AppendFormat("CALORIAS : {0}", this.CantidadCalorias);
             sb.AppendLine("TIPO : " + this.tipo);
             sb.AppendLine("");
             sb.AppendLine("---------------------");

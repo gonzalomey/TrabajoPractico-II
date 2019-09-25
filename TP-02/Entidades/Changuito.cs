@@ -11,9 +11,8 @@ namespace Entidades_2018
     /// </summary>
     public class Changuito
     {
-        List<Producto> productos;
-        int espacioDisponible;
-
+        private List<Producto> productos;
+        private int espacioDisponible;
         public enum ETipo
         {
             Dulce, Leche, Snacks, Todos
@@ -24,7 +23,6 @@ namespace Entidades_2018
         {
             this.productos = new List<Producto>();
         }
-
         public Changuito(int espacioDisponible) : this()
         {
             this.espacioDisponible = espacioDisponible;
@@ -38,7 +36,7 @@ namespace Entidades_2018
         /// <returns></returns>
         public override string ToString()
         {
-            return Mostrar(this, ETipo.Todos);
+            return this.Mostrar(this, ETipo.Todos);
         }
         #endregion
 
@@ -63,27 +61,26 @@ namespace Entidades_2018
                 {
                     case ETipo.Snacks:
                         if(v is Snacks)
-                        sb.AppendLine(v.Mostrar());
+                            sb.AppendLine(v.Mostrar());
                         break;
                     case ETipo.Dulce:
                         if(v is Dulce)
-                        sb.AppendLine(v.Mostrar());
+                            sb.AppendLine(v.Mostrar());
                         break;
                     case ETipo.Leche:
                         if(v is Leche)
-                        sb.AppendLine(v.Mostrar());
+                            sb.AppendLine(v.Mostrar());
                         break;
                     default:
-                        sb.AppendLine(v.Mostrar());
+                            sb.AppendLine(v.Mostrar());
                         break;
-
                 }
             }
 
             return sb.ToString();
         }
         #endregion
-
+        
         #region "Operadores"
         /// <summary>
         /// Agregará un elemento a la lista
@@ -93,24 +90,19 @@ namespace Entidades_2018
         /// <returns></returns>
         public static Changuito operator +(Changuito c, Producto p)
         {
-            bool esta = false;
-          
             foreach (Producto v in c.productos)
             {
                 if (v == p)
                 {
-                    esta = true;
-                    break;
+                    return c;
                 }
             }
-            if(c.productos.Count < c.espacioDisponible)
-                if (esta == false)
+                if(c.productos.Count < c.espacioDisponible )
+                {
                     c.productos.Add(p);
-            
-            
+                }
             return c;
         }
-
         /// <summary>
         /// Quitará un elemento de la lista
         /// </summary>
@@ -119,12 +111,12 @@ namespace Entidades_2018
         /// <returns></returns>
         public static Changuito operator -(Changuito c, Producto p)
         {
-
-            for (int i = 0; i < c.productos.Count; i++)
+            foreach (Producto v in c.productos)
             {
-                if (c.productos[i] == p)
+                if (v == p)
                 {
                     c.productos.Remove(p);
+                    break;
                 }
             }
 

@@ -8,13 +8,14 @@ namespace Entidades_2018
 {
     public class Snacks : Producto
     {
-        public Snacks(EMarca marca, string patente, ConsoleColor color) : base(patente, marca, color)
+        public Snacks(EMarca marca, string codigo, ConsoleColor color)
+            : base(codigo, marca, color)
         {
         }
         /// <summary>
         /// Los snacks tienen 104 calorías
         /// </summary>
-        protected override short CantidadCalorias
+        public override short CantidadCalorias
         {
             get
             {
@@ -28,7 +29,7 @@ namespace Entidades_2018
 
             sb.AppendLine("SNACKS");
             sb.AppendLine(base.Mostrar());
-            sb.AppendLine("CALORIAS : " + this.CantidadCalorias);
+            sb.AppendFormat("CALORIAS : {0}", this.CantidadCalorias);
             sb.AppendLine("");
             sb.AppendLine("---------------------");
 
